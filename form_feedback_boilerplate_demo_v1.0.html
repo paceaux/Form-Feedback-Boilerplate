@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form Feedback Boilerplate v1.0 </title>
+
+    <style type="text/css">
+      
+      body { background-color: #2574b0; }
+      
+      @font-face {
+    font-family: 'Arvo';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Arvo'), url('http://themes.googleusercontent.com/static/fonts/arvo/v4/BM-nqL-L5PgjKPDNaleWB_esZW2xOQ-xsNqO47m55DA.woff') format('woff');
+}
+
+/*
+Form Boilerplate v1.0
+Author:       Frank M. Taylor. 
+HTML Notes:   This form boiler plate assumes that the label appears after the input field. This allows us to use the ~ sibling selector with the fields' dynamic pseudo classes to bold a label when the user is typing. 
+References:   My blog post: http://blog.frankmtaylor.com/2011/12/04/layering-the-feedback-with-css/;
+Usage:        This uses object-oriented CSS. Shape and position elements as you see fit. 
+              
+        
+*/
+body{
+    font-size: 1em;
+    color: #444;
+    background: #fff;
+    font-family: "Arvo",
+  }
+/*FORM RESET */
+  input, textarea, select, option, button, label{
+    border: none;
+    outline: none;
+    background:none;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+}
+  /* DYNAMIC PSEUDO CLASES */
+  form *:hover, form *:active, form *:focus{
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+}
+
+  /*SHAPE and position THE ELEMENTS */
+  form, label{
+    width: 30em;  
+}
+  input, textarea, select {
+    width: 19em;
+    padding:0 .5em;
+    margin: 1em 0;
+}
+  input, select{
+    height: 2em;
+}
+  input[type="radio"]{
+    width: 1.5em;
+    display:inline;
+    margin: 0 1.5em 1em .5em;
+    height: 1.5em;
+}
+  input[type="radio"] + input[type="radio"]{
+    width: 1.5em;  
+}
+  textarea{
+    height: 8em;
+    max-width: 80%;
+}
+  label{
+    height: 1em;
+    display:block;
+    position:relative;
+    bottom:3.25em;
+}
+  textarea +  label{
+    bottom: 7.25em;  
+}
+  select + label{
+    bottom: 3.25em;
+}
+
+  form:hover input.required + label:after,
+  form:hover select.required + label:after{
+    font-size: .75em;
+    position:relative;
+    left:9em;
+}
+
+  form:hover select.required + label:after{
+    left:8em;
+}
+
+/*BRAND THE ELEMENTS */
+  form{
+    border: 1px solid #677898;
+    border-radius: 5px;
+    padding: .5em;
+    background: #f1f1f1;
+    color: #dcdcdc;
+    font-family:"Arvo"
+}
+
+  input,  textarea, select{
+    border: 1px solid #fff;
+    border-radius: 3px 3PX 3PX 3px;
+    background: #fff;
+    color: #d1d1d1;
+}
+  input[type="submit"], input[type="cancel"]{
+    background: #e1e1e1;
+    border: 1px solid #e1e1e1;
+}
+/*FEEDBACK LAYERS */
+  /*LEVEL 1: USER ENTERS FORM AREA*/
+  form:hover label, form:hover input,
+  form:hover textarea, form:hover select {
+    color: #c6c7c7;
+    border-color: #c6c7c7;
+}  
+  form input:hover + label,  form input:hover, 
+  form textarea:hover + label,  form textarea:hover
+  form select:hover + label, form select:hover{
+    color: #168afe;
+    border-color: #168afe;
+}
+  /*required input fields */
+form:hover input.required + label:after, form:hover select.required + label:after{
+    content:"required";
+}
+  /*LEVEL 2: USER FOCUSES ON FIELDS */
+  form input:hover + label,  form input:hover,
+  form textarea:hover + label,  form textarea:hover
+  form select:hover + label, form select:hover,form select:hover + label,form select:hover,
+  form input[type="radio"]:hover ~ label[for="radio"]{
+    color: #5c8ab7;
+    border-color: #5c8ab7;
+}
+  /*required input fields */
+  form input.required:hover + label:after,form select.required:hover +label:after{
+    color: #b75c5d;
+}
+  form:hover input[type="submit"]:hover{
+    color: #444;
+}
+
+  form input[type="radio"]:checked +  label{
+    color: #5c8ab7;
+}
+  /*LEVEL 3: USER FOCUSES ON FIELDS */
+          /*note: you need to change label[for="radio"] to match the name of the radio inputs used in the HTML  */
+  form input:focus + label,  form input:focus,
+  form textarea:focus + label,  form textarea:focus
+  form select:focus + label, form select:focus,form select:active + label,form select:active,
+  form input[type="radio"]:focus ~ label[for="radio"], form input[type="radio"]:active ~ label[for="radio"]{
+    color: #168AFE;
+    border-color: #168afe;
+}
+  /*required input fields */
+  form input.required:focus + label:after,form select.required:focus +label:after{
+    color: #fe1619;
+}
+  form:hover input[type="submit"]:focus{
+    color: #444;
+}
+
+/*LEVEL 4: USER'S READY TO SUBMIT */
+  /*LAST ELEMENT BEFORE SUBMIT - change the element to whatever the last form field is */
+  textarea:focus ~ input[type="submit"]{
+    border: 1px solid #01cb3e;
+    color:#444;
+    background: #01cb3e;
+}
+/*the css3 approach */
+form > :nth-last-child(-n+3):focus ~ input[type="submit"]     {
+    background:#01cb3e;
+    border-color: #01cb3e;
+    color: #444;
+  }
+  form textarea ~ input[type="submit"]:hover{
+    background:#01cb3e;
+    border-color: #01cb3e;
+    color: #444;
+}
+    </style>
+  </head>
+  <body>
+    <form>
+  <input type="email" name="email" class="required">
+  <label for="email">email</label>
+  
+  <input type="text" name="name" class="required">
+  <label for="name">Name</label>
+  
+  <input type="text" name="phone">
+  <label for="phone">Phone</label>
+  
+  <input type="radio" name="radio">
+  <input type="radio" name="radio"/>
+  <input type="radio" name="radio"/>
+  <label for="radio">Radio options</label>
+
+<select ="selection" class="required">
+    <option>Item one</option>
+    <option>Item Two</option>
+    <option>Item Three</option>
+    <option>Item Four</option>
+</select>
+<label for="selection">Options</label>
+<textarea name="comment"></textarea>
+<label for="comment">Comment</label>
+
+<input type="submit" value="send">
+</form>
+  </body>
+</html>
