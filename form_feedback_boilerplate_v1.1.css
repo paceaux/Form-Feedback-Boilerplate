@@ -1,0 +1,254 @@
+/*
+Form Boilerplate v1.1
+Author:       Frank M. Taylor. 
+HTML Notes:   This form boiler plate assumes that the label appears after the input field. This allows us to use the ~ sibling selector with the fields' dynamic pseudo classes to bold a label when the user is typing. 
+References:   My blog post: http://blog.frankmtaylor.com/2011/12/04/layering-the-feedback-with-css/;
+Usage:        This uses object-oriented CSS. Shape and position elements as you see fit. 
+              
+        
+
+
+/*FORM NORMALIZATION - COURTESY OF NICOLAS GALLAGHER AND JONATHAN NEAL */
+  form {
+    margin: 0;
+    padding:.5em; /*ADDED */
+}
+  fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0;
+}
+  legend {
+    border: 0; 
+    margin-left: 0; 
+}
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 100%; 
+    margin: 0; 
+    vertical-align: baseline;
+    vertical-align: middle; 
+}
+  button,
+  input {
+    line-height: normal;
+}
+  button,
+  input[type="button"], 
+  input[type="reset"], 
+  input[type="submit"] {
+    cursor: pointer; 
+    -webkit-appearance: button; 
+    overflow: visible;  
+}
+  input[type="checkbox"],
+  input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+input[type="search"] {
+    -webkit-appearance: textfield; 
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; 
+    box-sizing: content-box;
+}
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+  button::-moz-focus-inner,
+  input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+  textarea {
+    overflow: auto; 
+    vertical-align: top; 
+}
+/*FORM FEEDBACK: BASELINE STYLES */
+
+  input, textarea, select, option, button, label, fieldset,legend{
+    border: none;
+    outline: none;
+    background:none;
+    -webkit-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+}
+  /* DYNAMIC PSEUDO CLASES */
+  form *:hover, form *:active, form *:focus{
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+}
+
+  /*SHAPE and position THE ELEMENTS */
+  form{
+    padding: .5em;
+}
+  form, label{
+    width: 30em;  
+}
+  input, textarea, select, fieldset {
+    width: 19em;
+    padding:0 .5em;
+    margin: 1em 0;
+}
+  fieldset{
+    padding: 0;
+}
+  input, select{
+    height: 2em;
+}
+  input[type="radio"], input[type="checkbox"]{
+    width: 1.5em;
+    display:inline;
+    margin: 0 1.5em 1em .5em;
+    height: 1.5em;
+}
+  input[type="radio"] + input[type="radio"], 
+  input[type="checkbox"] + input[type="checkbox"]{
+    width: 1.5em;  
+}
+  textarea{
+    height: 8em;
+    max-width: 80%;
+}
+  label{
+    height: 1em;
+    display:block;
+    position:relative;
+    bottom:4.25em;
+}
+  textarea +  label{
+  bottom: 10.25em;
+
+}
+
+  form:hover input.required + label:after,
+  form:hover select.required + label:after{
+    font-size: .75em;
+    position:relative;
+    left:40%
+}
+
+  form:hover select.required + label:after{
+    left:8em;
+}
+
+/*BRAND THE ELEMENTS */
+  form{
+    border: 1px solid #677898;
+    border-radius: 5px;
+    background: #f1f1f1;
+    color: #dcdcdc;
+    font-family:"Arvo"
+}
+
+  input,  textarea, select, fieldset{
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px 3PX 3PX 3px;
+    color: #dcdcdc;
+}
+
+  input, textarea, select{
+    background: #fff;
+    border-color: #fff;
+}
+
+  legend{
+}
+
+  fieldset{
+    border-color: transparent;
+}
+  input[type="submit"], input[type="cancel"]{
+    background: #e1e1e1;
+    border: 1px solid #e1e1e1;
+}
+/*FEEDBACK LAYERS */
+  /*LEVEL 1: USER ENTERS FORM AREA*/
+  form:hover label, form:hover input,
+  form:hover textarea, form:hover select,
+  form:hover fieldset, form:hover fieldset legend 
+  {
+    color: #c6c7c7;
+    border-color: #c6c7c7;
+}  
+  form input:hover + label,  form input:hover,
+  form textarea:hover + label,  form textarea:hover
+  form select:hover + label, form select:hover
+  {
+    color: #168afe;
+    border-color: #168afe;
+}
+  /*required input fields */
+form:hover input.required + label:after, form:hover select.required + label:after{
+    content:"required";
+}
+  /*LEVEL 2: USER FOCUSES ON FIELDS */
+  form input:hover + label,  form input:hover,
+  form textarea:hover + label,  form textarea:hover
+  form select:hover + label, form select:hover,form select:hover + label,form select:hover,
+  form input[type="radio"]:hover ~ label[for="radio"],
+  form fieldset:hover, form input:hover ~ legend, form fieldset:hover > legend
+  {
+    color: #5c8ab7;
+    border-color: #5c8ab7;
+}
+  /*required input fields */
+  form input.required:hover + label:after,form select.required:hover +label:after{
+    color: #b75c5d;
+}
+  form:hover input[type="submit"]:hover{
+    color: #444;
+}
+
+  form input[type="radio"]:checked +  legend{
+    color: #5c8ab7;
+}
+  /*LEVEL 3: USER FOCUSES ON FIELDS */
+          /*note: you need to change label[for="radio"] to match the name of the radio inputs used in the HTML  */
+  form input:focus + label,  form input:focus,
+  form textarea:focus + label,  form textarea:focus,
+  form select:focus + label, form select:focus,form select:active + label,form select:active,
+  form fieldset:active, form fieldset:focus, form fieldset > input:focus ~ legend
+  {
+    color: #168AFE;
+    border-color: #168afe;
+}
+  /*required input fields */
+  form input.required:focus + label:after,form select.required:focus +label:after{
+    color: #fe1619;
+}
+  form:hover input[type="submit"]:focus{
+    color: #444;
+}
+
+/*LEVEL 4: USER'S READY TO SUBMIT */
+  /*LAST ELEMENT BEFORE SUBMIT - change the element to whatever the last form field is */
+  textarea:focus ~ input[type="submit"]{
+    border: 1px solid #01cb3e;
+    color:#444;
+    background: #01cb3e;
+}
+/*the css3 approach */
+form > :nth-last-child(-n+3):focus ~ input[type="submit"]     {
+    background:#01cb3e;
+    border-color: #01cb3e;
+    color: #444;
+  }
+  form textarea ~ input[type="submit"]:hover{
+    background:#01cb3e;
+    border-color: #01cb3e;
+    color: #444;
+}
+
+fieldset:hover > input:focus{
+  background: black;
+  font-size: 2em;
+}
